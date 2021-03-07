@@ -1,10 +1,9 @@
-<html>
-<body>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/Views/Header.jsp"%>
+
     <input style="width:49%" type="text" id="phoneNumber" placeholder="Phone number"><br>
     <input style="width:49%" type="password" id="password" placeholder="password"><br>
     <button onclick="login()">Login</button>
-</body>
-</html>
 
 <script>
     const login = () => {
@@ -39,3 +38,5 @@
         });
     }
 </script>
+
+<%@include file="/Views/Footer.jsp"%>

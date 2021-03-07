@@ -95,6 +95,36 @@ public class AccountApi {
         return Response.ok(response).build();
     }
 
+    @POST
+    @Path("/update")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateUser(String json){
+        UpdateUserModel updateUserModel = new Gson().fromJson(json, UpdateUserModel.class);
+        //System.out.println("CHANGE PASSWORD: " + changePasswordModel.getOldPassword() + " " + changePasswordModel.getNewPassword());
+        try
+        {
+            openSession();
+
+            UsersController.getInstance().getCurrentUser().setFullName(updateUserModel.getFullName());
+            UsersController.getInstance().getCurrentUser().setLogin(updateUserModel.getLogin());
+            UsersController.getInstance().getCurrentUser().setPassword(updateUserModel.getPassword());
+            UsersController.getInstance().getCurrentUser().setGroupName(updateUserModel.getGroupName());
+
+            session.update(UsersController.getInstance().getCurrentUser());
+
+            if(session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
+                session.getTransaction().commit();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+
+        return Response.status(Response.Status.OK).build();
+    }
+
     private User getAccountByLoginAndPassword(String phoneNumber, String getPassword){
         openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();

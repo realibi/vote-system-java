@@ -90,6 +90,8 @@ public class AccountApi {
             UsersController.getInstance().setCurrentUser(account);
         }
 
+        System.out.println("Response: " + response);
+
         return Response.ok(response).build();
     }
 

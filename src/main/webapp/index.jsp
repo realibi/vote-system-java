@@ -1,17 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/Views/Header.jsp"%>
 
-    <input style="width:49%" type="text" id="phoneNumber" placeholder="Phone number"><br>
+    <input style="width:49%" type="text" id="login" placeholder="login"><br>
     <input style="width:49%" type="password" id="password" placeholder="password"><br>
     <button onclick="login()">Login</button>
 
 <script>
     const login = () => {
-        const phoneNumber = $("#phoneNumber").val();
+        const login = $("#login").val();
         const password = $("#password").val();
 
         let data = {
-            "phoneNumber": phoneNumber,
+            "login": login,
             "password": password
         }
 
